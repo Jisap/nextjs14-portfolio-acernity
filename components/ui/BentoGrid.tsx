@@ -1,6 +1,13 @@
+"use client"
+
+import { useState } from "react";
 import { cn } from "../../lib/cn";
 import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
+import Lottie from "react-lottie";
+import animationData from "@/data/confetti.json";
+import MagicButton from "./MagicButton";
+import { IoCopyOutline } from "react-icons/io5";
 
 export const BentoGrid = ({
   className,
@@ -40,10 +47,30 @@ export const BentoGridItem = ({
   titleClassName?: string,
   spareImg?: string,
 }) => {
+
+  const leftLists = ["ReactJS", "Express", "Typescript"];
+  const rightLists = ["VueJS", "NuxtJS", "GraphQL"];
+  const [copied, setCopied] = useState(false);
+
+  const defaultOptions = {
+    loop: copied,
+    autoplay: copied,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  const handleCopy = () => {
+    const text = "jisapjisap@gmail.com";
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+  };
+
   return (
     <div
       className={cn(
-        "row-span-1 relative overflow-hidden rounded-3xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-transparent justify-between flex flex-col space-y-4",
+        "row-span-1 relative overflow-hidden rounded-3xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4 border-white/[0.1]",
         className
       )}
       style={{
@@ -97,12 +124,58 @@ export const BentoGridItem = ({
           {/* for the github 3d globe */}
           {id === 2 && <GridGlobe />}
 
-        </div>
+          {/* Tech stack list div */}
+          {id === 3 && (
+            <div className="flex gap-1 lg:gap-5 w-fit absolute -right-3 lg:-right-2">
+              {/* tech stack lists */}
+              <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
+                {leftLists.map((item, i) => (
+                  <span 
+                    key={i}
+                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
+                    lg:opacity-100 rounded-lg text-center bg-[#10132E]"
+                  >
+                    {item}
+                  </span>
+                ))}
+                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
+              </div>
+              <div className="flex flex-col gap-3 md:gap-3 lg:gap-8">
+                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-[#10132E]"></span>
+                {rightLists.map((item, i) => (
+                  <span
+                    key={i}
+                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-50 
+                    lg:opacity-100 rounded-lg text-center bg-[#10132E]"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
-        
+          {id === 6 && (
+            <div className="mt-5 relative">
+              <div
+                className={`absolute -bottom-5 right-0 ${copied ? "block" : "block"
+                  }`}
+              >
+                <Lottie options={defaultOptions} height={200} width={400} />
+              </div>
+
+              <MagicButton
+                title={copied ? "Email is Copied!" : "Copy my email address"}
+                icon={<IoCopyOutline />}
+                position="left"
+                handleClick={handleCopy}
+                otherClasses="!bg-[#161A31]"
+              />
+            </div>
+          )}
+
+        </div>  
       </div>
-     
-      
     </div>
   );
 };
