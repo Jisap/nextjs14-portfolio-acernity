@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -12,6 +14,7 @@ const Approach = () => {
       </h1>
 
       <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
+
         <Card
           title="Planning & Strategy"
           icon={<AceternityIcon order="Phase 1" />}
@@ -24,6 +27,7 @@ const Approach = () => {
             // add these classed for the border rounded overflowing -> rounded-3xl overflow-hidden
             containerClassName="bg-emerald-900 rounded-3xl overflow-hidden"
           />
+          
         </Card>
         <Card
           title="Development & Progress Update"
@@ -41,9 +45,6 @@ const Approach = () => {
             ]}
             dotSize={2}
           />
-          {/* Radial gradient for the cute fade */}
-          {/* remove this one */}
-          {/* <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" /> */}
         </Card>
         <Card
           title="Development & Launch"
