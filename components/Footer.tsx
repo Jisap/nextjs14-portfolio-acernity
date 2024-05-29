@@ -5,9 +5,9 @@ import MagicButton from "./ui/MagicButton";
 
 const Footer = () => {
   return (
-    <footer className="w-full pt-15 pb-10" id="contact">
+    <footer className="w-full pt-15 pb-10 mb-[100px]" id="contact">
       {/* background grid */}
-      <div className="w-full absolute left-0 -bottom-72 min-h-96">
+      <div className="w-full absolute left-0 sm:-bottom-72 xl:-bottom-30 min-h-96">
         <img
           src="/footer-grid.svg"
           alt="grid"
@@ -33,7 +33,7 @@ const Footer = () => {
         </a>
       </div>
       <div className="flex mt-16 md:flex-row flex-col justify-between items-center">
-        <p className="md:text-base text-sm md:font-normal font-light">
+        <p className="md:text-base text-sm md:font-normal font-light mb-[15px]">
           Copyright © 2024 Jisap Jisap
         </p>
 
